@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caatinga | Domínio Morfoclimático</title>
+
+  <style>
+   
+    :root {
+      --areia: #f3e6ca;
+      --areia-clara: #fff9ed;
+      --terracota: #a94f2b;
+      --terracota-escura: #71351f;
+      --cacto: #526b43;
+      --cacto-escuro: #344a2c;
+      --sol: #e5ad43;
+      --texto: #30271f;
+      --branco: #fffdf8;
+      --sombra: 0 12px 30px rgba(60, 39, 22, 0.13);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth; 
+    }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--texto);
+      background: var(--areia-clara);
+      line-height: 1.7;
+    }
+
+    header {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 9%;
+      color: var(--branco);
+      background:
+        linear-gradient(90deg, rgba(44, 38, 24, .86), rgba(91, 55, 29, .45)),
+        linear-gradient(135deg, #8c542e, #c58a45 48%, #536b42);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      width: 390px;
+      height: 390px;
+      border: 2px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      right: 8%;
+      bottom: -170px;
+      box-shadow: 0 0 0 35px rgba(255,255,255,.05),
+                  0 0 0 75px rgba(255,255,255,.04);
+    }
+
+    .hero-conteudo {
+      max-width: 760px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 7px 15px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 30px;
+      color: #ffe8b2;
+      font: 700 .78rem Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: .98;
+      margin-bottom: 25px;
+      letter-spacing: -3px;
+    }
+
+    header p {
+      max-width: 650px;
+      font-size: 1.15rem;
+      color: #fff2d8;
+    }
+
+    .botao {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 13px 23px;
+      border-radius: 5px;
+      background: var(--sol);
+      color: #352416;
+      text-decoration: none;
+      font: bold .95rem Arial, sans-serif;
+      transition: .25s;
+    }
+
+    .botao:hover {
+      background: #ffd477;
+      transform: translateY(-3px);
+    }
+
+    .menu-lateral {
+      position: fixed;
+      z-index: 1000;
+      top: 50%;
+      right: 0;
+      transform: translate(190px, -50%);
+      width: 235px;
+      padding: 18px 15px 18px 48px;
+      background: var(--cacto-escuro);
+      border-radius: 12px 0 0 12px;
+      box-shadow: var(--sombra);
+      transition: transform .35s ease;
+    }
+
+    .menu-lateral:hover,
+    .menu-lateral:focus-within {
+      transform: translate(0, -50%);
+    }
+
+    .menu-lateral::before {
+      content: "☰";
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffe1a0;
+      font: 25px Arial, sans-serif;
+    }
+
+    .menu-lateral strong {
+      display: block;
+      margin: 0 0 10px;
+      color: #f5d28b;
+      font: bold .8rem Arial, sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .menu-lateral a {
+      display: block;
+      padding: 7px 4px;
+      color: white;
+      text-decoration: none;
+      font: .88rem Arial, sans-serif;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .menu-lateral a:hover {
+      color: #ffd477;
+      padding-left: 10px;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 35px 28px 80px;
+    }
+
+    .introducao {
+      max-width: 850px;
+      margin: 25px auto 65px;
+      text-align: center;
+    }
+
+    .introducao h2,
+    .secao h2 {
+      color: var(--terracota-escura);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .introducao p {
+      font-size: 1.08rem;
+    }
+
+    .secao {
+      scroll-margin-top: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 35px;
+      align-items: center;
+      margin: 35px 0;
+      padding: 35px;
+      background: var(--branco);
+      border-radius: 15px;
+      box-shadow: var(--sombra);
+      border-left: 7px solid var(--cacto);
+    }
+
+    .secao:nth-of-type(even) {
+      border-left-color: var(--terracota);
+    }
+
+    .numero {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--terracota);
+      font: bold .8rem Arial, sans-serif;
+      letter-spacing: 2px;
+    }
+
+    .secao p {
+      margin-bottom: 12px;
+    }
+
+    .destaque {
+      padding: 17px 19px;
+      margin-top: 17px;
+      background: #f5ecd9;
+      border-radius: 8px;
+      border-left: 4px solid var(--sol);
+      font-size: .96rem;
+    }
+
+    .cartoes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cartao {
+      padding: 15px;
+      background: #f6efdf;
+      border-radius: 9px;
+    }
+
+    .cartao b {
+      display: block;
+      color: var(--cacto-escuro);
+      margin-bottom: 4px;
+    }
+
+    .imagem-secao {
+      min-height: 260px;
+      height: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #e9c88e;
+      box-shadow: 0 8px 20px rgba(45,30,18,.13);
+    }
+
+    .imagem-secao img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .imagem-secao:hover img {
+      transform: scale(1.04);
+    }
+
+    .imagem-secao figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 28px 15px 12px;
+      color: white;
+      background: linear-gradient(transparent, rgba(30,24,16,.82));
+      font: bold .76rem Arial, sans-serif;
+      letter-spacing: .3px;
+    }
+
+    .imagem-secao figcaption a {
+      color: #ffe1a0;
+      font-weight: normal;
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 22px;
+      margin: 10px 0 15px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .curiosidade {
+      margin: 55px 0 15px;
+      padding: 30px;
+      color: white;
+      background: var(--terracota-escura);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .curiosidade h2 {
+      color: #ffdc98;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 28px 20px;
+      text-align: center;
+      color: #f8e9cd;
+      background: #293b25;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        min-height: 75vh;
+        padding: 65px 8%;
+      }
+
+      header h1 {
+        letter-spacing: -1px;
+      }
+
+      main {
+        padding: 20px 15px 55px;
+      }
+
+      .secao {
+        grid-template-columns: 1fr;
+        padding: 23px;
+        gap: 20px;
+      }
+
+      .imagem-secao,
+      .imagem-secao img {
+        min-height: 210px;
+      }
+
+      .menu-lateral {
+        transform: translate(190px, -50%);
+      }
+
+      .cartoes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .menu-lateral a:focus {
+      outline: 2px solid var(--sol);
+      outline-offset: 2px;
+    }
+
+    #questionario {
+      display: none;
+      scroll-margin-top: 25px;
+      max-width: 900px;
+      margin: 35px auto;
+      padding: 32px;
+      background: var(--branco);
+      border-radius: 15px;
+      box-shadow: var(--sombra);
+      border-top: 7px solid var(--sol);
+    }
+
+    #questionario:target {
+      display: block;
+    }
+
+    body:has(#questionario:target) main > section:not(#questionario) {
+      display: none;
+    }
+
+    #questionario h2 {
+      color: var(--terracota-escura);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 10px;
+    }
+
+    .quiz-intro {
+      margin-bottom: 24px;
+    }
+
+    .pergunta {
+      padding: 20px;
+      margin: 18px 0;
+      border: 1px solid #e7d9bf;
+      border-radius: 10px;
+      background: #fffaf0;
+    }
+
+    .pergunta h3 {
+      color: var(--cacto-escuro);
+      font-size: 1.08rem;
+      margin-bottom: 12px;
+    }
+
+    .alternativa {
+      display: block;
+      margin: 9px 0;
+      padding: 9px 12px;
+      border-radius: 7px;
+      background: #f4eddf;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: .95rem;
+    }
+
+    .alternativa:hover {
+      background: #eadfc9;
+    }
+
+    .alternativa input {
+      margin-right: 8px;
+      accent-color: var(--cacto);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 13px;
+      padding: 10px 12px;
+      border-radius: 7px;
+      font: .92rem Arial, sans-serif;
+    }
+
+    .feedback-correto {
+      color: #244b26;
+      background: #e2f1df;
+      border-left: 4px solid #4c8a49;
+    }
+
+    .feedback-errado {
+      color: #7a2e20;
+      background: #f8e3dc;
+      border-left: 4px solid #b64b35;
+    }
+
+    .pergunta:has(.correta:checked) .feedback-correto,
+    .pergunta:has(input:not(.correta):checked) .feedback-errado {
+      display: block;
+    }
+
+    #questionario {
+        counter-reset: pontos;
+    }
+
+    .marcador-ponto {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+
+    #questionario:has(#q1-c:checked) .ponto-1 {
+        counter-increment: pontos 1;
+    }
+
+    #questionario:has(#q2-c:checked) .ponto-2 {
+        counter-increment: pontos 1;
+    }
+
+    #questionario:has(#q3-c:checked) .ponto-3 {
+        counter-increment: pontos 1;
+    }
+
+    #questionario:has(#q4-c:checked) .ponto-4 {
+        counter-increment: pontos 1;
+    }
+
+    #questionario:has(#q5-c:checked) .ponto-5 {
+        counter-increment: pontos 1;
+    }
+
+    .resultado::after {
+        content: counter(pontos) " de 5 pontos";
+    }
+
+    .resultado {
+      margin: 25px 0 15px;
+      padding: 18px;
+      text-align: center;
+      color: white;
+      background: var(--cacto-escuro);
+      border-radius: 10px;
+      font: bold 1.15rem Arial, sans-serif;
+    }
+
+    .resultado::after {
+      content: counter(pontos) " de 5 pontos";
+      display: block;
+      margin-top: 7px;
+      color: #ffe1a0;
+      font-size: 1.6rem;
+    }
+
+    .acoes-quiz {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .botao-quiz {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--terracota);
+      color: white;
+      text-decoration: none;
+      font: bold .95rem Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    .botao-quiz:hover {
+      background: var(--terracota-escura);
+    }
+
+    .botao-secundario {
+      background: var(--cacto);
+    }
+
+    .botao-secundario:hover {
+      background: var(--cacto-escuro);
+    }
+
+    @media (max-width: 760px) {
+      #questionario {
+        padding: 22px 16px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header id="inicio">
+    <div class="hero-conteudo">
+      <span class="etiqueta">Geografia • Lucas Pauli</span>
+      <h1>Domínio<br>da Caatinga</h1>
+      <p>
+        Um domínio exclusivamente brasileiro, marcado pelo clima semiárido,
+        pela vegetação adaptada à seca e por uma grande diversidade de vida.
+        Conheça as características naturais e os desafios ambientais desse domínio.
+      </p>
+      <a class="botao" href="#localizacao">Explorar o domínio ↓</a>
+    </div>
+  </header>
+
+  <nav class="menu-lateral" aria-label="Navegação principal">
+    <strong>Explorar conteúdo</strong>
+    <a href="#inicio">Início</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#clima">Clima</a>
+    <a href="#relevo">Relevo</a>
+    <a href="#vegetacao">Vegetação</a>
+    <a href="#hidrografia">Hidrografia</a>
+    <a href="#solo">Solo</a>
+    <a href="#problemas">Problemas ambientais</a>
+    <a href="#questionario">Questionário</a>
+  </nav>
+
+  <main>
+    <section class="introducao">
+      <span class="numero">UM ECOSSISTEMA BRASILEIRO</span>
+      <h2>O que é o Domínio da Caatinga?</h2>
+      <p>
+        A Caatinga é um domínio natural presente principalmente no interior
+        do Nordeste brasileiro e em parte do norte de Minas Gerais. Seu nome
+        vem do tupi e significa “mata branca”, referência ao aspecto claro
+        que parte da vegetação adquire durante a estação seca. Mesmo com pouca
+        chuva em vários meses, abriga espécies que desenvolveram adaptações
+        para sobreviver ao calor e à falta de água.
+      </p>
+    </section>
+
+    <section class="secao" id="localizacao">
+      <figure class="imagem-secao">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Caatinga%20Landscape.jpg" alt="Paisagem típica da Caatinga no interior do Nordeste" loading="lazy">
+        <figcaption>Paisagem da Caatinga · <a href="https://commons.wikimedia.org/wiki/Category:Caatinga" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">01 • TERRITÓRIO</span>
+        <h2>Localização</h2>
+        <p>
+          A Caatinga ocupa uma extensa área do interior do Brasil, concentrada
+          na região Nordeste e alcançando também o norte de Minas Gerais.
+          Está presente em áreas de estados como Ceará, Rio Grande do Norte,
+          Paraíba, Pernambuco, Alagoas, Sergipe, Bahia, Piauí e Maranhão.
+        </p>
+        <p>
+          É o único grande domínio natural brasileiro cuja ocorrência é
+          exclusivamente nacional, o que torna sua conservação especialmente
+          importante para o país.
+        </p>
+        <div class="destaque">
+          <b>Onde predomina?</b> No chamado Sertão nordestino, área marcada
+          por temperaturas elevadas e chuvas irregulares.
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="clima">
+      <figure class="imagem-secao">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Caatinga%20in%20times%20of%20drought%20Caatinga%20em%20tempos%20de%20seca%20(26449765811).jpg" alt="Vegetação da Caatinga durante o período de seca" loading="lazy">
+        <figcaption>Sol forte e estação seca · <a href="https://commons.wikimedia.org/wiki/Category:Caatinga" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">02 • ATMOSFERA</span>
+        <h2>Clima</h2>
+        <p>
+          O clima predominante é o semiárido, caracterizado por temperaturas
+          geralmente elevadas, alta evaporação e chuvas escassas e irregulares.
+          Em muitas áreas, a estação chuvosa é curta e pode variar bastante
+          de um ano para outro.
+        </p>
+        <p>
+          As secas podem durar vários meses e, em alguns períodos, se prolongar
+          por mais de um ano. Quando a chuva chega, pode ocorrer de forma
+          concentrada, causando enxurradas.
+        </p>
+        <div class="cartoes">
+          <div class="cartao"><b>Temperaturas</b>Elevadas durante boa parte do ano.</div>
+          <div class="cartao"><b>Chuvas</b>Baixas, irregulares e mal distribuídas.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="relevo">
+      <figure class="imagem-secao">
+        <img src="https://static-cms.routard.com/web-routard/uploads/chapada_diamantina_bresil_5a3116ffae.jpg" alt="Chapada Diamantina, com paredões, vales e áreas elevadas" loading="lazy">
+        <figcaption>Serras, chapadas e depressões · <a href="https://www.routard.com/fr/guide/ameriques/bresil/etat-de-bahia/parque-nacional-da-chapada-diamantina" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">03 • FORMAS DA TERRA</span>
+        <h2>Relevo</h2>
+        <p>
+          O relevo da Caatinga é variado. Há depressões sertanejas, planaltos,
+          chapadas, serras e áreas de terrenos mais planos. As depressões
+          ocupam grandes extensões do interior nordestino e aparecem entre
+          áreas mais elevadas.
+        </p>
+        <p>
+          Entre as formas conhecidas estão a Chapada Diamantina, na Bahia,
+          e áreas de planaltos e serras espalhadas pelo domínio. O relevo
+          influencia a circulação dos ventos e a distribuição das chuvas.
+        </p>
+        <div class="destaque">
+          <b>Característica marcante:</b> paisagens com terrenos pedregosos,
+          serras e grandes áreas rebaixadas no interior.
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="vegetacao">
+      <figure class="imagem-secao">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Caatinga%20IBAMA.jpg" alt="Vegetação nativa característica do domínio da Caatinga" loading="lazy">
+        <figcaption>Plantas adaptadas à seca · <a href="https://commons.wikimedia.org/wiki/Category:Caatinga" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">04 • VIDA VEGETAL</span>
+        <h2>Vegetação</h2>
+        <p>
+          A vegetação é formada por plantas adaptadas à falta de água.
+          Muitas árvores e arbustos perdem suas folhas durante a estação seca,
+          estratégia que reduz a perda de água. Quando chove, várias espécies
+          voltam a ficar verdes rapidamente.
+        </p>
+        <p>Entre as plantas encontradas na Caatinga estão:</p>
+        <ul>
+          <li><b>Mandacaru:</b> cacto alto que armazena água no caule.</li>
+          <li><b>Xique-xique:</b> cacto com espinhos e caules ramificados.</li>
+          <li><b>Juazeiro:</b> árvore que pode permanecer verde mesmo na seca.</li>
+          <li><b>Umbuzeiro:</b> árvore que armazena água em estruturas subterrâneas.</li>
+          <li><b>Jurema:</b> arbusto ou árvore comum em diferentes áreas do domínio.</li>
+        </ul>
+        <div class="destaque">
+          As folhas pequenas, os espinhos e os caules que armazenam água
+          são exemplos de adaptações que ajudam as plantas a sobreviver.
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="hidrografia">
+      <figure class="imagem-secao">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Represa%20de%20Itaparica%20-%20Rodelas%20-%20BA%202%E2%80%94%20Glauco%20Umbelino.jpg" alt="Reservatório de Itaparica, no rio São Francisco" loading="lazy">
+        <figcaption>Rios e reservatórios · <a href="https://commons.wikimedia.org/wiki/Category:Caatinga" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">05 • RECURSOS HÍDRICOS</span>
+        <h2>Hidrografia</h2>
+        <p>
+          A hidrografia é marcada pela presença de muitos rios temporários,
+          que podem secar durante os períodos de estiagem. Isso acontece
+          devido à irregularidade das chuvas e à elevada evaporação.
+        </p>
+        <p>
+          Existem também rios perenes, que mantêm água durante todo o ano,
+          como o São Francisco, fundamental para o abastecimento, a agricultura
+          e a geração de energia em diferentes áreas do Nordeste.
+        </p>
+        <p>
+          Açudes, barragens e cisternas são importantes para armazenar água
+          e ajudar comunidades a enfrentar os períodos de seca.
+        </p>
+        <div class="destaque">
+          <b>Rio de destaque:</b> o Rio São Francisco é uma das principais
+          fontes de água para a população e as atividades econômicas da região.
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="solo">
+      <figure class="imagem-secao">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Paisagem%20do%20Sert%C3%A3o%20no%20Interior%20Baiano%20terreno.JPG" alt="Solo pedregoso e exposto em paisagem do sertão baiano" loading="lazy">
+        <figcaption>Solos variados e pedregosos · <a href="https://commons.wikimedia.org/wiki/Category:Caatinga" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">06 • SUPERFÍCIE</span>
+        <h2>Solo</h2>
+        <p>
+          Os solos da Caatinga são bastante variados. Em algumas áreas são
+          rasos, pedregosos e apresentam pouca capacidade de armazenar água.
+          Em outras, podem ser mais profundos e apresentar melhores condições
+          para a agricultura.
+        </p>
+        <p>
+          A baixa cobertura vegetal durante a seca pode deixar o solo exposto
+          à ação do vento e da chuva. Quando há uso inadequado da terra,
+          o desgaste e a perda de nutrientes podem se intensificar.
+        </p>
+        <div class="cartoes">
+          <div class="cartao"><b>Solos rasos</b>Podem dificultar o crescimento de raízes profundas.</div>
+          <div class="cartao"><b>Solos mais férteis</b>Em algumas áreas permitem atividades agrícolas, com manejo adequado.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="problemas">
+      <figure class="imagem-secao">
+        <img src="https://www.gov.br/ibama/pt-br/assuntos/noticias/2023/ibama-embarga-3-380-hectares-de-caatinga-desmatados-ilegalmente-na-bahia/2023-04-28_imagem_aerea_caatinga_ba_ibama.jpg/@@images/image" alt="Área de Caatinga desmatada, registrada pelo Ibama na Bahia" loading="lazy">
+        <figcaption>Desmatamento e degradação ambiental · <a href="https://www.gov.br/ibama/pt-br/assuntos/noticias/2023/ibama-embarga-3-380-hectares-de-caatinga-desmatados-ilegalmente-na-bahia" target="_blank" rel="noopener">Fonte da imagem</a></figcaption>
+      </figure>
+      <div>
+        <span class="numero">07 • DESAFIOS AMBIENTAIS</span>
+        <h2>Problemas Ambientais</h2>
+        <p>
+          A Caatinga sofre com ações humanas que ameaçam sua biodiversidade
+          e prejudicam o equilíbrio ambiental. Entre os principais problemas
+          estão o desmatamento, as queimadas, a caça ilegal e o uso inadequado
+          dos recursos naturais.
+        </p>
+        <ul>
+          <li><b>Desmatamento:</b> retirada da vegetação para agricultura,
+            criação de animais e obtenção de lenha.</li>
+          <li><b>Queimadas:</b> destroem habitats, matam animais e empobrecem o solo.</li>
+          <li><b>Sobrepastoreio:</b> excesso de animais pode dificultar a recuperação
+            da vegetação e aumentar a erosão.</li>
+          <li><b>Desertificação:</b> degradação da terra em áreas secas, agravada
+            pelo desmatamento, pelo manejo inadequado e pelas secas.</li>
+          <li><b>Perda da biodiversidade:</b> destruição de habitats ameaça espécies
+            de plantas e animais.</li>
+        </ul>
+        <div class="destaque">
+          <b>Como ajudar?</b> Proteger áreas naturais, evitar queimadas,
+          recuperar áreas degradadas e utilizar água e solo de forma responsável.
+        </div>
+      </div>
+    </section>
+
+    <section class="curiosidade">
+      <h2>Você sabia?</h2>
+      <p>
+        Apesar da aparência seca em parte do ano, a Caatinga possui grande
+        biodiversidade e muitas espécies que só existem nesse domínio.
+        A vegetação pode mudar bastante depois das chuvas, transformando
+        a paisagem em pouco tempo.
+      </p>
+    </section>
+
+    <section id="questionario" aria-labelledby="titulo-questionario">
+      <span class="numero">TESTE SEUS CONHECIMENTOS</span>
+      <h2 id="titulo-questionario">Questionário sobre a Caatinga</h2>
+      <p class="quiz-intro">
+        Responda às cinco perguntas de nível médio. Ao marcar uma alternativa,
+        você verá se acertou ou errou. A pontuação é atualizada automaticamente.
+      </p>
+
+      <form id="form-quiz">
+        <div class="pergunta">
+          <h3>1. Em qual conjunto de regiões brasileiras o domínio da Caatinga está concentrado?</h3>
+          <label class="alternativa"><input type="radio" name="q1" value="a"> Sul e Sudeste, principalmente nas áreas litorâneas.</label>
+          <label class="alternativa"><input type="radio" name="q1" value="b"> Centro-Oeste, principalmente no Pantanal.</label>
+          <label class="alternativa"><input type="radio" name="q1" value="c"> Região Norte, principalmente na área da Floresta Amazônica.</label>
+          <label class="alternativa"><input class="correta" id="q1-c" type="radio" name="q1" value="certo"> Interior do Nordeste e parte do norte de Minas Gerais.</label>
+          <div class="feedback feedback-correto">Você acertou! A Caatinga ocorre principalmente no interior do Nordeste e também alcança o norte de Minas Gerais.</div>
+          <div class="feedback feedback-errado">Você errou. A Caatinga está concentrada no interior do Nordeste e se estende por parte do norte de Minas Gerais.</div>
+        </div>
+
+        <div class="pergunta">
+          <h3>2. Qual característica explica a perda de folhas de muitas plantas da Caatinga durante a estação seca?</h3>
+          <label class="alternativa"><input type="radio" name="q2" value="a"> A necessidade de aumentar a absorção de luz durante as chuvas.</label>
+          <label class="alternativa"><input class="correta" id="q2-c" type="radio" name="q2" value="certo"> A redução da perda de água por transpiração.</label>
+          <label class="alternativa"><input type="radio" name="q2" value="c"> A adaptação a temperaturas muito baixas durante o inverno.</label>
+          <label class="alternativa"><input type="radio" name="q2" value="d"> A necessidade de aumentar a salinidade das folhas.</label>
+          <div class="feedback feedback-correto">Você acertou! A queda das folhas reduz a superfície de transpiração e ajuda a planta a economizar água.</div>
+          <div class="feedback feedback-errado">Você errou. A queda das folhas é uma adaptação que diminui a perda de água durante os períodos de estiagem.</div>
+        </div>
+
+        <div class="pergunta">
+          <h3>3. Qual alternativa descreve corretamente uma adaptação comum da vegetação da Caatinga?</h3>
+          <label class="alternativa"><input type="radio" name="q3" value="a"> Folhas largas e delicadas que aumentam a evaporação.</label>
+          <label class="alternativa"><input type="radio" name="q3" value="b"> Raízes sempre superficiais e incapazes de armazenar água.</label>
+          <label class="alternativa"><input type="radio" name="q3" value="c"> Dependência de solos permanentemente alagados.</label>
+          <label class="alternativa"><input class="correta" id="q3-c" type="radio" name="q3" value="certo"> Espinhos, raízes adaptadas e capacidade de armazenar água em algumas espécies.</label>
+          <div class="feedback feedback-correto">Você acertou! Espinhos, raízes adaptadas e armazenamento de água ajudam diversas espécies a enfrentar a seca.</div>
+          <div class="feedback feedback-errado">Você errou. Muitas plantas apresentam adaptações como espinhos, raízes especializadas e armazenamento de água.</div>
+        </div>
+
+        <div class="pergunta">
+          <h3>4. Por que muitos rios da Caatinga apresentam fluxo de água irregular ao longo do ano?</h3>
+          <label class="alternativa"><input class="correta" id="q4-c" type="radio" name="q4" value="certo"> Porque a irregularidade das chuvas faz alguns rios serem temporários ou intermitentes.</label>
+          <label class="alternativa"><input type="radio" name="q4" value="b"> Porque a região recebe chuvas abundantes e constantes em todos os meses.</label>
+          <label class="alternativa"><input type="radio" name="q4" value="c"> Porque todos os rios da região nascem em geleiras.</label>
+          <label class="alternativa"><input type="radio" name="q4" value="d"> Porque a vegetação impede completamente a infiltração da água.</label>
+          <div class="feedback feedback-correto">Você acertou! A distribuição irregular das chuvas faz com que muitos cursos d’água tenham períodos de cheia e de seca.</div>
+          <div class="feedback feedback-errado">Você errou. A irregularidade das precipitações explica a presença de rios temporários ou intermitentes em boa parte da região.</div>
+        </div>
+
+        <div class="pergunta">
+          <h3>5. Qual combinação apresenta problemas ambientais que ameaçam o equilíbrio da Caatinga?</h3>
+          <label class="alternativa"><input type="radio" name="q5" value="a"> Reflorestamento com espécies nativas e recuperação de nascentes.</label>
+          <label class="alternativa"><input type="radio" name="q5" value="b"> Criação de áreas protegidas e uso responsável da água.</label>
+          <label class="alternativa"><input class="correta" id="q5-c" type="radio" name="q5" value="certo"> Desmatamento, queimadas, sobrepastoreio e degradação do solo.</label>
+          <label class="alternativa"><input type="radio" name="q5" value="d"> Pesquisa científica e educação ambiental nas comunidades.</label>
+          <div class="feedback feedback-correto">Você acertou! Essas atividades podem remover a cobertura vegetal, empobrecer o solo e intensificar processos de degradação.</div>
+          <div class="feedback feedback-errado">Você errou. Desmatamento, queimadas, sobrepastoreio e degradação do solo estão entre as ameaças ambientais do bioma.</div>
+        </div>
+
+        <span class="marcador-ponto ponto-1"></span>
+        <span class="marcador-ponto ponto-2"></span>
+        <span class="marcador-ponto ponto-3"></span>
+        <span class="marcador-ponto ponto-4"></span>
+        <span class="marcador-ponto ponto-5"></span>
+
+        <div class="resultado" aria-live="polite">Sua pontuação final</div>
+        <div class="acoes-quiz">
+          <button class="botao-quiz" type="reset">Refazer questionário</button>
+          <a class="botao-quiz botao-secundario" href="#inicio">Voltar ao início</a>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Produzido por:</p>
+    <p> Vinicius S. M. da Fonseca - - - - - - - - - - - - Heitor B. Silva - - - - - - - - - - - - Felipe da S. Marques - - - - - - - - - - - - Vitor dos R. Santos</p>  
+  </footer>
+</body>
+</html>
